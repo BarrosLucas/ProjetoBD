@@ -6,6 +6,7 @@ import model.Modules;
 import model.Training;
 import model.User;
 import utils.Constants;
+import java.util.Scanner;
 
 public class main extends Constants{
 
@@ -13,7 +14,27 @@ public class main extends Constants{
 		// TODO Auto-generated method stub
 		
 		Facade facade = new Facade();
+		Scanner scan = new Scanner(System.in);
 		
+		User user = new User();
+		
+		// Criando o Perfil de Usuario
+		System.out.println("*** PROJETO BANCO DE DADOS ***\n");
+		System.out.println("Digite seu nome de Perfil: ");
+		user.setName(scan.nextLine());
+		user.setCalories(0);
+		user.setDaysOfTraining(0);
+		user.setFullChallenges(0);
+		user.setTrainings(new ArrayList<Training>());
+
+		int ret = facade.createUser(user);
+		if(ret==OK) {
+			System.out.println("Usuário cadastrado");
+		}else {
+			System.out.println("Falha no cadastro");
+		}
+		
+		// Criando Exercicios
 		Exercise exercise = new Exercise();
 		
 		exercise.setTitle("Polichinelo");
@@ -116,7 +137,31 @@ public class main extends Constants{
 			System.out.println("Falha ao criar");
 		}
 		
+		// MENU
+		System.out.println("\n********** MENU **********\n");
+		System.out.println("> Digite 1 para editar o nome do perfil");
+		System.out.println("> Digite 2 para montar o treino");
+		System.out.println("> Digite 3 para mostrar os desafios");
+		System.out.println("> Digite 4 para mostrar os exercicios");
+		int selecao = scan.nextInt();
 
+		switch (selecao) {
+			case 1:
+				System.out.println("Informe o novo nome de perfil: ");
+				user.setName(scan.nextLine());
+				break;
+			case 2:
+				System.out.println("Montar treino ...");
+				break;
+			case 3:
+				System.out.println("Mostrando desafios ...");
+				break;
+			case 4:
+				System.out.println("Mostrando exercicios ...");
+				break;
+			default:
+				System.out.println("Entrada Invalida!");
+		}
 	}
 
 }
