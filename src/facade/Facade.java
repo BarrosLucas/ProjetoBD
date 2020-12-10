@@ -216,4 +216,8 @@ public class Facade extends Constants {
         return response;*/
     }
 
+    //Novo exercício
+    public int createExercise(Exercise exercise) {
+    	return (new ExerciseController()).createExercise(exercise);
+    }
 }
